@@ -1,5 +1,5 @@
 import React from "react";
-import { asset, Environment } from 'react-360'
+import { asset, Environment } from "react-360";
 import house from "./data/houseData";
 
 const State = {
@@ -21,9 +21,9 @@ export function changeRoom(roomSelection) {
 
     State.room = roomName;
     State.info = house[`${roomName}`].info;
-    State.adjacentRooms = house[`${roomName}`].adjacentRooms
+    State.adjacentRooms = house[`${roomName}`].adjacentRooms;
 
-    Environment.setBackgroundImage(asset(`./360_${house[`${roomName}`].img}`))
+    Environment.setBackgroundImage(asset(`./360_${house[`${roomName}`].img}`));
 
     updateComponents();
 }
@@ -40,12 +40,12 @@ export function connect(Component) {
             this.setState({
                 room: State.room,
                 info: State.info,
-                adjacentRooms: State.adjacentRooms,
-            })
-        }
+                adjacentRooms: State.adjacentRooms
+            });
+        };
 
         componentDidMount() {
-            listeners.add(this._listener)
+            listeners.add(this._listener);
         }
 
         render() {

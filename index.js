@@ -38,9 +38,9 @@ class Button extends React.Component {
                 style={this.state.hover ? styles.hover : styles.button}
                 onEnter={() => this.setState({ hover: true })}
                 onExit={() => this.setState({ hover: false })}
-                onClick={() => this.clickHandler(room)}
+                onClick={() => this.clickHandler(this.props.room)}
             >
-                <Text style={{ backgroundColor: "green" }}>{room}</Text>
+                <Text style={{ textAlign: "center" }}>{this.props.room.split("_").join(" ")}</Text>
             </VrButton>
         );
     }
@@ -74,19 +74,43 @@ const ConnectedButtonInfoPanel = connect(ButtonInfoPanel);
 const ConnectedHouseInfoPanel = connect(HouseInfoPanel);
 
 const styles = StyleSheet.create({
-    panel: {
-        // Fill the entire surface
-        width: 1000,
-        height: 600,
-        backgroundColor: "rgba(255, 255, 255, 0.4)",
-        justifyContent: "space-between",
-        flexDirection: "row"
+    infoPanel: {
+        width: 400,
+        height: 400,
+        opacity: 0.8,
+        backgroundColor: "rgb(255, 200, 50)",
+        borderColor: "rgb(255,255,255)",
+        borderWidth: 5,
+        borderRadius: 20
     },
-    greetingBox: {
-        padding: 20,
-        backgroundColor: "#000000",
-        borderColor: "#639dda",
-        borderWidth: 2
+    buttonPanel: {
+        width: 400,
+        height: 400,
+        opacity: 0.8,
+        backgroundColor: "rgb(255,200,50)",
+        borderColor: "rgb(255,255,255)",
+        borderWidth: 5,
+        borderRadius: 20,
+        flexDirection: "column",
+        justifyContent: "space-around",
+        alignItems: "center"
+    },
+    button: {
+        width: 200,
+        backgroundColor: "rgb(0,0,0)",
+        borderColor: "rgb(255,255,255)",
+        borderWidth: 5
+    },
+    hover: {
+        width: 200,
+        backgroundColor: "rgb(0,45,72)",
+        borderColor: "rgb(255,255,255)",
+        borderWidth: 5
+    },
+    header: {
+        fontSize: 40,
+        fontWeight: "bold",
+        textAlign: "center"
     }
 });
 
