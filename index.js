@@ -23,24 +23,36 @@ class HouseInfoPanel extends React.Component {
     }
 }
 
-export default class Buttons extends React.Component {
+class Button extends React.Component {
+    state = {
+        hover: false
+    };
+
     clickHandler(roomSelection) {
         changeRoom(roomSelection);
     }
 
+    render() {
+        return (
+            <VrButton
+                style={this.state.hover ? styles.hover : styles.button}
+                onEnter={() => this.setState({ hover: true })}
+                onExit={() => this.setState({ hover: false })}
+                onClick={() => this.clickHandler(room)}
+            >
+                <Text style={{ backgroundColor: "green" }}>{room}</Text>
+            </VrButton>
+        );
+    }
+}
+
+export default class ButtonInfoPanel extends React.Component {
     createRoomButtons(adjacentRooms) {
         let rooms = adjacentRooms;
         let buttons = [];
 
         rooms.map(room =>
-            buttons.push(
-                <VrButton
-                    key={`${room}` + "-button"}
-                    onClick={() => this.clickHandler(room)}
-                >
-                    <Text style={{ backgroundColor: "green" }}>{room}</Text>
-                </VrButton>
-            )
+            buttons.push(<Button key={`${room}` + "button"} room={room} />)
         );
 
         return buttons;
@@ -58,7 +70,7 @@ export default class Buttons extends React.Component {
     }
 }
 
-const ConnectedButtons = connect(Buttons);
+const ConnectedButtonInfoPanel = connect(ButtonInfoPanel);
 const ConnectedHouseInfoPanel = connect(HouseInfoPanel);
 
 const styles = StyleSheet.create({
@@ -78,7 +90,10 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent("ConnectedButtons", () => ConnectedButtons);
+AppRegistry.registerComponent(
+    "ConnectedButtonInfoPanel",
+    () => ConnectedButtonInfoPanel
+);
 AppRegistry.registerComponent(
     "ConnectedHouseInfoPanel",
     () => ConnectedHouseInfoPanel

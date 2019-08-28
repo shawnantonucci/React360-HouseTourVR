@@ -15,7 +15,7 @@ function init(bundle, parent, options = {}) {
     buttonsPanel.setAngle(-0.6, 0.1);
 
     r360.renderToSurface(
-        r360.createRoot("ConnectedButtons", {
+        r360.createRoot("ConnectedButtonInfoPanel", {
             /* initial props */
         }),
         buttonsPanel
