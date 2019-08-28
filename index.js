@@ -1,15 +1,27 @@
 import React from "react";
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    VrButton,
-    Environment,
-    asset
-} from "react-360";
+import { AppRegistry, StyleSheet, Text, View, VrButton } from "react-360";
 import { connect, changeRoom } from "./store";
-import house from "./data/houseData";
+
+class HouseInfoPanel extends React.Component {
+    render() {
+        return (
+            <View>
+                <View style={styles.infoPanel}>
+                    <Text style={styles.header}>Room Info</Text>
+                    <Text
+                        style={{
+                            fontSize: 20,
+                            textAlign: "center",
+                            fontWeight: "bold"
+                        }}
+                    >
+                        {this.props.info}
+                    </Text>
+                </View>
+            </View>
+        );
+    }
+}
 
 export default class Buttons extends React.Component {
     clickHandler(roomSelection) {
@@ -36,23 +48,10 @@ export default class Buttons extends React.Component {
 
     render() {
         return (
-            <View style={styles.panel}>
-                <View style={styles.greetingBox}>
-                    <Text style={styles.greetingBox}>Room Selection</Text>
-                    <Text>{this.props.room}</Text>
+            <View>
+                <View style={styles.buttonPanel}>
+                    <Text style={styles.header}>Room Selection</Text>
                     {this.createRoomButtons(this.props.adjacentRooms)}
-                </View>
-            </View>
-        );
-    }
-}
-export class HouseInfoPanel extends React.Component {
-    render() {
-        return (
-            <View style={styles.panel}>
-                <View>
-                    <Text>Room Info</Text>
-                    <Text>{this.props.info}</Text>
                 </View>
             </View>
         );
